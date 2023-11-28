@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hidden Page Input Transactions</title>
+</head>
+<body>
+
+	<h1>Input Credit Card Transactions</h1>
+
+	<p>
+		For user: <span th:text="${user.username}"></span>, credit card: <span th:text="${selectedCreditCardName}">, normal purchase:</span>
+	</p>
+
+
+	<form method="post" action="hidden-input-transaction-purchase">
+		
+		<label for="amount">Amount:</label> 
+			<input type="number" id="amount" name="amount" step="any"> 
+			
+		<label for="transactionTime">Transaction Time:</label> 
+			<input type="datetime-local" id="transactionTime" name="transactionTime"> 
+		
+		<label for="merchant">Merchant:</label>
+			<input type="text" id="merchant" name="merchant"> 
+			
+			<input type="submit" value="Submit Transaction">
+	
+	</form>
+	
+	
+	<div th:if="${amountExceedsCreditLimit}">
+		<p style="color:red;">Transaction amount exceeds available credit. Please enter a smaller amount.</p>
+	</div>
+	
+	<div th:if="${transactionSuccessful}">
+		<p style="color: green;">Transaction successful.</p>
+	</div>
+	
+	<div th:if="${ccPaymentSuccessful}">
+		<p style="color: green;">Credit Card Debt Payment successful.</p>
+	</div>
+	
+	<div th:if="${ccPaymentFailed}">
+		<p style="color: red;">Credit Card Debt Payment failed.</p>
+	</div>
+	
+	
+	<br>
+	<a href="hidden">Click here to go back to main hidden page</a>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" monitorInterval="30">
+
+	<!-- The most commonly used appender is RollingFileAppender, but we will 
+		use Console and File for simplicity. There are many options in logging: Console, 
+		Files, Databases, HTTP, Sockets, etc. For more information about appenders, 
+		see the link here: https://logging.apache.org/log4j/2.x/manual/appenders.html -->
+	<Appenders>
+
+		<Console name="StdOut" target="SYSTEM_OUT">
+			<!-- Each appender should have a layout associated with it. This determines 
+				the output pattern of the messages. -->
+			<PatternLayout pattern="%msg%n" />
+		</Console>
+
+		<File name="FileAppender" filename="output.log">
+			<!-- This pattern is the same pattern as the default logger. For more 
+				information on layouts and patterns, see the link here https://logging.apache.org/log4j/2.x/manual/layouts.html -->
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</File>
+	</Appenders>
+
+
+	<Loggers>
+		<!-- Since the root logger is appending to the console, all other loggers 
+			will inherit this appender. Thus, all loggers will append to the console. -->
+		<Root level="info">
+			<AppenderRef ref="StdOut" />
+		</Root>
+
+		<!-- Sometimes it makes more sense to configure logging for all classes 
+			within a package. Because parent loggers are dot-separated, a child logger 
+			will inherit all information from its most direct ancestor. -->
+		<Logger name="com.fdm" level="trace">
+			<AppenderRef ref="FileAppender" />
+		</Logger>
+
+		<!-- This logger has two inherited appender: one from the root, one from 
+			the package-level configuration. It overrides the level of its parent. It 
+			is the most common to name loggers based off of the fully qualified class 
+			name. -->
+<!-- 		<Logger name="com.fdmgroup.log4jexercise.Main"
+			level="info">
+		</Logger>
+		
+		<Logger name="com.fdmgroup.log4jexercise.TaxRates" level="trace" additivity="false">
+			<AppenderRef ref="FileAppender" />
+		</Logger> -->
+
+	</Loggers>
+</Configuration>

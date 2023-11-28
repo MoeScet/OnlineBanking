@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  	<style>
+	 /* heading format */
+	.heading {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 44px;
+	}
+  	
+  	.heading2 {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 20px;
+	line-height: 24px;
+	align-items: center;
+	text-align: left;
+	color: #000000;
+	}
+  	
+  	/* content format*/
+  	.content {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 44px;
+	}
+  	
+  	/* recommendation header */
+  	.recommendation {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 24px;
+	line-height: 34px;
+	color: #B9B9B9;
+	}
+
+	/* credit card description format */
+	.description{
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 22px;
+	display: flex;
+	align-items: center;
+	color: #000000;
+	}
+	
+	/* credit limit wording */
+	.credit-limit {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 44px;
+	}
+	
+	/* card 1 pic */
+	.card1 {
+	width: 331px;
+	height: 183px;
+	background: #4BB49E;
+	border-radius: 10px;
+	}
+	
+	/* card 2 pic */
+	.card2 {
+	width: 331px;
+	height: 183px;
+	background: #1ECBE1;
+	border-radius: 10px;
+	}
+
+	/* card 3 pic */
+	.card3 {
+	width: 331px;
+	height: 183px;
+	background: #6857A8;
+	border-radius: 10px;
+	}
+  	</style>
+  </head>
+  <body>
+   	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+  
+  
+  	<div class="container">
+  		<br>
+  		<h1>Hello, <span th:text="${user.firstName}"></span>!</h1>
+  		
+  		<br>
+  		
+  		<!-- creating tab -->
+  		<nav>
+		  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+		    <button class="nav-link active" id="nav-bankAccount-tab" data-bs-toggle="tab" data-bs-target="#nav-bankAccount" type="button" role="tab" aria-controls="nav-bankAccount" aria-selected="true">Bank Account</button>
+		    <button class="nav-link" id="nav-creditCard-tab" data-bs-toggle="tab" data-bs-target="#nav-creditCard" type="button" role="tab" aria-controls="nav-creditCard" aria-selected="false">Credit Card</button>
+  		  </div>
+		</nav>
+		
+		
+		   <!-- CREDIT CARD -->
+		   <!-- CREDIT CARD -->
+		   <!-- CREDIT CARD -->
+		  <!-- credit card tab content  -->
+		  <div class="tab-pane fade" id="nav-creditCard" role="tabpanel" aria-labelledby="nav-creditCard-tab" tabindex="0">
+		  	<br>
+		  	
+		  	<!-- FRAGMENT TO LINK WITH HOME PAGE -->
+		  	<div th:fragment="credit-card-session">
+		  	
+			  	<!-- SECTION 1: if user has no credit card -->
+			  	<div class="content" th:if="${noCreditCard}">
+		  			You have no credit card.
+		 		 </div>
+		 		 
+		 		 <!-- SECTION2: CREDIT LIMIT (if user has credit card) -->
+		 		 <div class="heading" th:unless="${noCreditCard}">
+		  			Available Credit Limit
+		 		 </div>
+		 		 
+		 		 <div class="credit-limit" th:unless="${noCreditCard}">
+		 			 $<span th:text="${availableCreditLimit}"></span>/ $<span th:text="${creditLimit}"></span>
+		 		 </div>
+		 		 <br>
+		 		 
+		 		 <!-- display user's credit card -->
+		 		  <div class="heading" th:unless="${noCreditCard}">
+		  			Your Credit Card
+		 		 </div><br>
+		 		 
+		 		 <table>
+		 		 		<!-- card display picture -->
+						<tr>
+							<th style="width:400px; padding-right: 15px; padding-left:15px" align="center"
+								th:each="creditCard : ${userCreditCards}"
+								th:if="${creditCard.CardName.toString() == 'CARD1'}">
+								<div class="card1"></div><br>
+							</th>
+							
+							<th style="width:400px; padding-right: 15px; padding-left:15px" align="center"
+								th:each="creditCard : ${userCreditCards}"
+								th:if="${creditCard.CardName.toString() == 'CARD2'}">
+								<div class="card2"></div><br>
+							</th>
+							
+							<th style="width:400px; padding-right: 15px; padding-left:15px" align="center"
+								th:each="creditCard : ${userCreditCards}"
+								th:if="${creditCard.CardName.toString() == 'CARD3'}">
+								<div class="card3"></div><br>
+							</th>
+						</tr>	
+						
+						<!-- card name, amount payable, due date -->
+						<tr>
+							<td style="padding-right:15px; padding-left:15px; vertical-align: top;" 
+								th:each="creditCard : ${userCreditCards}"
+								th:if="${creditCard.CardName.toString() == 'CARD1'}">
+								<div class="heading2">
+						 			Smart Credit Card</div><br>
+						 		<div class="content">
+						 			Amount payable: $ <span th:text="${#numbers.formatDecimal(creditCard.currentAmountPayable,1,2,'POINT')}"></span><br>
+						 			Due date: <span th:text="${creditCard.paymentDate}"></span>
+						 			</div><br>			
+							</td>
+							
+							<td style="padding-right:15px; padding-left:15px; vertical-align: top;"
+								th:each="creditCard : ${userCreditCards}"
+								th:if="${creditCard.CardName.toString() == 'CARD2'}">
+								<div class="heading2">
+						  			Titanium Rewards Credit Card</div><br>
+						  		<div class="content">
+						 			Amount payable: $ <span th:text="${#numbers.formatDecimal(creditCard.currentAmountPayable,1,2,'POINT')}"></span><br>
+						 			Due date: <span th:text="${creditCard.paymentDate}"></span>
+						 			</div><br>	
+						 	</td>
+							
+							<td style="padding-right:15px; padding-left:15px; vertical-align: top;"
+								th:each="creditCard : ${userCreditCards}"
+								th:if="${creditCard.CardName.toString() == 'CARD3'}">
+								<div class="heading2">
+						  			Infinite Credit Card</div><br>
+						  		<div class="content">
+						 			Amount payable: $ <span th:text="${#numbers.formatDecimal(creditCard.currentAmountPayable,1,2,'POINT')}"></span><br>
+						 			Due date: <span th:text="${creditCard.paymentDate}"></span>
+						 			</div><br>
+							</td>	
+						</tr>
+						
+						<!-- view transactions & make payment button -->
+						<tr>
+							<td style="padding-right:15px; padding-left:15px; text-align:centre; vertical-align: top;"
+								th:each="creditCard : ${userCreditCards}"
+								th:if="${creditCard.CardName.toString() == 'CARD1'}">
+								<a th:href="@{/transaction/creditCard/CARD1}">
+									<button type="button" class="btn btn-outline-secondary">View Transactions</button>
+								</a><br><br>
+								<a th:href="@{/creditcard/payment/CARD1}" th:if="${creditCard.currentAmountPayable > 0}">
+									<button type="button" class="btn btn-outline-primary">Make Payment</button>
+								</a>
+								<a th:if="${creditCard.currentAmountPayable == 0}">
+									<button type="button" class="btn btn-outline-primary" disabled>Make Payment</button>
+								</a>
+							</td>
+				
+							<td style="padding-right:15px; padding-left:15px; text-align:centre; vertical-align: top;"
+								th:each="creditCard : ${userCreditCards}"
+								th:if="${creditCard.CardName.toString() == 'CARD2'}">
+								<a th:href="@{/transaction/creditCard/CARD2}">
+									<button type="button" class="btn btn-outline-secondary">View Transactions</button>
+								</a><br><br>
+								<a th:href="@{/creditcard/payment/CARD2}" th:if="${creditCard.currentAmountPayable > 0}">
+									<button type="button" class="btn btn-outline-primary">Make Payment</button>
+								</a>
+								<a th:if="${creditCard.currentAmountPayable == 0}">
+									<button type="button" class="btn btn-outline-primary" disabled>Make Payment</button>
+								</a>
+							</td>
+				
+							<td style="padding-right:15px; padding-left:15px; text-align:centre; vertical-align: top;"
+								th:each="creditCard : ${userCreditCards}"
+								th:if="${creditCard.CardName.toString() == 'CARD3'}">
+								<a th:href="@{/transaction/creditCard/CARD3}">
+									<button type="button" class="btn btn-outline-secondary">View Transactions</button>
+								</a><br><br>
+								<a th:href="@{/creditcard/payment/CARD3}" th:if="${creditCard.currentAmountPayable > 0}">
+									<button type="button" class="btn btn-outline-primary">Make Payment</button>
+								</a>
+								<a th:if="${creditCard.currentAmountPayable == 0}">
+									<button type="button" class="btn btn-outline-primary" disabled>Make Payment</button>
+								</a>
+							</td>
+						</tr>
+					</table><br><br>
+		 		 
+		 		 
+		 		 
+		 		 <!-- SECION3: RECOMMENDATION -->
+				 <br>
+				 <div class="recommendation" th:if="${recommendationNeeded}">
+				 	Recommendation
+				 </div>
+			  
+			  	 <div class="heading" th:if="${recommendationNeeded}">
+			  	 Credit Card Applications
+			  	 </div>
+			  	 
+			  	 <!-- to display credit card available to apply -->
+			  	 <br>
+					<table th:if="${recommendationNeeded}">
+						<tr>
+							<th style="width:400px; padding-right: 15px; padding-left:15px" align="center"
+								th:each="creditCard : ${creditCardNotApplied}"
+								th:if="${creditCard.toString() == 'CARD1'}">
+								<div class="card1"></div><br>
+							</th>
+							
+							<th style="width:400px; padding-right: 15px; padding-left:15px" align="center"
+								th:each="creditCard : ${creditCardNotApplied}"
+								th:if="${creditCard.toString() == 'CARD2'}">
+								<div class="card2"></div><br>
+							</th>
+							
+							<th style="width:400px; padding-right: 15px; padding-left:15px" align="center"
+								th:each="creditCard : ${creditCardNotApplied}"
+								th:if="${creditCard.toString() == 'CARD3'}">
+								<div class="card3"></div><br>
+							</th>
+						</tr>	
+						
+						<tr>
+							<td style="padding-right:15px; padding-left:15px; vertical-align: top;"
+								th:each="creditCard : ${creditCardNotApplied}"
+								th:if="${creditCard.toString() == 'CARD1'}">
+								<div class="heading2">
+						 			Smart Credit Card</div><br>
+								<div class="description">
+									Earn 6% cashback on everyday dining Earn 3% cashback on groceries, land transport, online travel, telco and electricity Earn up to 22.1% fuel savings at Caltex and 5% cashback for all other petrol brands!
+						  		</div><br>		
+							</td>
+							
+							<td style="padding-right:15px; padding-left:15px; vertical-align: top;"
+								th:each="creditCard : ${creditCardNotApplied}"
+								th:if="${creditCard.toString() == 'CARD2'}">
+								<div class="heading2">
+						  			Titanium Rewards Credit Card</div><br>
+								<div class="description">
+									Earn 10x rewards per $1 spent on eligible online and retail purchases at Apple, Shopee, H&M and more Exchange for cash rebates, air miles, vouchers, products and experiences Get a bonus 2% cash rebate on electronics at Best Denki
+						  		</div><br>
+						 	</td>
+							
+							<td style="padding-right:15px; padding-left:15px; vertical-align: top;"
+								th:each="creditCard : ${creditCardNotApplied}"
+								th:if="${creditCard.toString() == 'CARD3'}">
+								<div class="heading2">
+						  			Infinite Credit Card</div><br>
+								<div class="description">
+									Interest-free auto-instalments Ease of split payments across 3 or 6 months Earn 1% cash rebates when your monthly bill is S$1,000 or more.
+								</div><br>
+							</td>
+						</tr>
+						
+						<!-- apply now button -->
+						<tr>
+							<td style="padding-right:15px; padding-left:15px; text-align:centre; vertical-align: top;"
+								th:each="creditCard : ${creditCardNotApplied}"
+								th:if="${creditCard.toString() == 'CARD1'}">
+								<a th:href="@{/creditcard/apply/CARD1}">
+									<button type="button" class="btn btn-outline-secondary">Apply Now</button>
+								</a>
+							</td>
+							
+							<td style="padding-right:15px; padding-left:15px; vertical-align: top;" 
+								th:each="creditCard : ${creditCardNotApplied}"
+								th:if="${creditCard.toString() == 'CARD2'}">
+								<a th:href="@{/creditcard/apply/CARD2}">
+									<button type="button" class="btn btn-outline-secondary">Apply Now</button>
+								</a>
+							</td>
+							
+							<td style="padding-right:15px; padding-left:15px; vertical-align: top;" 
+								th:each="creditCard : ${creditCardNotApplied}"
+								th:if="${creditCard.toString() == 'CARD3'}">
+								<a th:href="@{/creditcard/apply/CARD3}">
+									<button type="button" class="btn btn-outline-secondary">Apply Now</button>
+								</a>
+							</td>
+						</tr>
+					</table>
+					<br><br>
+
+		  </div>
+		  <!-- END OF CREDIT CARD TAB -->
+			
+	  	</div>
+	  	<!-- tab content end tag -->
+  	
+	  </div>
+	  <!-- container end tag -->
+  </body>
+</html>
+
+
+
+
+
+
+
+
+

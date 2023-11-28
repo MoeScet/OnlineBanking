@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hidden Page</title>
+</head>
+<body>
+	
+	<h1>Input Credit Card Transactions</h1>
+	
+	<form method="post" action="hidden" >
+		<label for="user">Select a user: </label>
+			<select id="user" name="user">
+				<option th:each="user : ${userList}" th:value="${user.username}" th:text="${user.username}"></option>
+			</select>
+		<input type="submit" value="Select User"/>
+	</form> 
+	
+	
+
+</body>
+</html>

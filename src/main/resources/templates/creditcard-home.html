@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org>
+<head>
+<meta charset="UTF-8">
+<title>Home Page</title>
+
+<style>
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #4486D3;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+
+
+
+/* Hi, Username */
+.greeting {
+position: absolute;
+width: 318px;
+height: 61px;
+left: 71px;
+top: 54px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 50px;
+line-height: 61px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #000000;
+}
+
+/* Rectangle 2 */
+.Rectangle-2 {
+box-sizing: border-box;
+
+position: absolute;
+width: 162px;
+height: 68px;
+left: 1234px;
+top: 37px;
+
+background: #FFFFFF;
+border: 1px solid rgba(0, 0, 0, 0.97);
+border-radius: 10px;
+}
+
+/* LOGOUT */
+.logout {
+position: absolute;
+width: 118px;
+height: 34px;
+left: 1256px;
+top: 54px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 28px;
+line-height: 34px;
+/* identical to box height */
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #5C5050;
+}
+
+/* Greet User placing */
+.greeting {
+position: absolute;
+width: 318px;
+height: 61px;
+left: 71px;
+top: 54px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 50px;
+line-height: 61px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #000000;
+}
+
+/* Recommendation */
+.reccomendation {
+position: absolute;
+width: 231px;
+height: 34px;
+left: 71px;
+top: 348px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 28px;
+line-height: 34px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #B9B9B9;
+}
+
+/* You have no credit cards. */
+.credit-statement {
+position: absolute;
+width: 335px;
+height: 34px;
+left: 71px;
+top: 274px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 28px;
+line-height: 34px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #000000;
+}
+
+/* Credit Card Application */
+.credit-header {
+position: absolute;
+width: 413px;
+height: 44px;
+left: 71px;
+top: 394px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 36px;
+line-height: 44px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #000000;
+
+}
+
+/* Credit Card Application */
+.credit-card-header {
+position: absolute;
+width: 413px;
+height: 44px;
+left: 71px;
+top: 160px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 36px;
+line-height: 44px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #000000;
+}
+
+
+/* Recommendation */
+.reccomendation {
+position: absolute;
+width: 231px;
+height: 34px;
+left: 71px;
+top: 348px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 28px;
+line-height: 34px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #B9B9B9;
+}
+
+
+
+/* You have no credit cards. */
+.credit-statement {
+position: absolute;
+width: 335px;
+height: 34px;
+left: 71px;
+top: 274px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 28px;
+line-height: 34px;
+/* identical to box height */
+display: flex;
+align-items: center;
+
+color: #000000;
+}
+
+
+
+
+
+/* Rectangle 4 */
+.rectangle-4 {
+position: absolute;
+width: 331px;
+height: 183px;
+left: 75px;
+top: 473px;
+
+background: #D9D9D9;
+border-radius: 10px;
+}
+
+/* Group 23 */
+.group-23 {
+position: absolute;
+width: 165px;
+height: 52px;
+left: 158px;
+top: 900px;
+}
+
+
+/* Rectangle 2 */
+.rectangle-2 {
+box-sizing: border-box;
+
+position: absolute;
+width: 165px;
+height: 52px;
+left: 158px;
+top: 900px;
+
+background: #FFFFFF;
+border: 1px solid rgba(0, 0, 0, 0.97);
+border-radius: 5px;
+}
+
+/* Apply Now */
+.apply-now-smart {
+position: absolute;
+width: 104.91px;
+height: 18.35px;
+left: 188.56px;
+top: 916.82px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #5C5050;
+}
+
+
+/* Smart Credit Card */
+.smart-card {
+position: absolute;
+width: 177px;
+height: 24px;
+left: 152px;
+top: 675px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 24px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+}
+
+
+/* Earn 6% cashback on everyday dining Earn 3% cashback on groceries, land transport, online travel, telco and electricity Earn up to 22.1% fuel savings at Caltex and 5% cashback for all other petrol brands */
+.smart-card-des {
+
+position: absolute;
+width: 354px;
+height: 151px;
+left: 64px;
+top: 718px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+
+color: #000000;
+}
+
+
+
+
+/* Rectangle 5 */
+.rectangle-5 {
+position: absolute;
+width: 331px;
+height: 183px;
+left: 558px;
+top: 473px;
+
+background: #D9D9D9;
+border-radius: 10px;
+}
+
+
+
+/* Rectangle 2 */
+.rectangle-12 {
+box-sizing: border-box;
+
+position: absolute;
+width: 165px;
+height: 52px;
+left: 641px;
+top: 909px;
+
+background: #FFFFFF;
+border: 1px solid rgba(0, 0, 0, 0.97);
+border-radius: 5px;
+}
+
+/* Apply Now */
+.apply-now-titanium {
+position: absolute;
+width: 104.91px;
+height: 18.35px;
+left: 671.56px;
+top: 925.82px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #5C5050;
+}
+
+
+/* Titanium Rewards Credit Card */
+.titanium-card {
+position: absolute;
+width: 294px;
+height: 24px;
+left: 576px;
+top: 675px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 24px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #000000;
+}
+
+
+/* Earn 10x rewards per $1 spent on eligible online and retail purchases at Apple, Shopee, H&M and more Exchange for cash rebates, air miles, vouchers, products and experiences Get a bonus 2% cash rebate on electronics at Best Denki */
+.titanium-card-des {
+position: absolute;
+width: 355px;
+height: 154px;
+left: 546px;
+top: 719px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+display: flex;
+align-items: center;
+
+color: #000000;
+}
+
+
+/* Rectangle 6 */
+.rectangle-6 {
+position: absolute;
+width: 331px;
+height: 183px;
+left: 1030px;
+top: 473px;
+
+background: #D9D9D9;
+border-radius: 10px;
+}
+
+
+
+
+/* Rectangle 12 */
+.rectangle-22 {
+box-sizing: border-box;
+
+position: absolute;
+width: 165px;
+height: 52px;
+left: 1113px;
+top: 909px;
+
+background: #FFFFFF;
+border: 1px solid rgba(0, 0, 0, 0.97);
+border-radius: 5px;
+}
+
+/* Apply Now */
+.apply-now-infinity {
+position: absolute;
+width: 104.91px;
+height: 18.35px;
+left: 1143.56px;
+top: 925.82px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #5C5050;
+}
+
+
+/* Infinite Credit Card */
+.infinity-card {
+position: absolute;
+width: 186px;
+height: 24px;
+left: 1103px;
+top: 675px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 24px;
+display: flex;
+align-items: center;
+
+color: #000000;
+}
+
+
+/* Interest-free auto-instalments Ease of split payments across 3 or 6 months Earn 1% cash rebates when your monthly bill is S$1,000 or more */
+.infinity-card-des {
+position: absolute;
+width: 325px;
+height: 110px;
+left: 1033px;
+top: 718px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+display: flex;
+align-items: center;
+
+color: #000000;
+}
+
+
+
+
+
+</style>
+
+
+
+
+
+
+<script type="text/javascript">
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+
+
+
+
+
+</head>
+<body>
+		
+	<!-- Tab links -->
+	<div class="tab">
+	  <button class="tablinks" onclick="openCity(event, 'Bank Account')">Bank Account</button>
+	  <button class="tablinks" onclick="openCity(event, 'Credit Card')" id="defaultOpen">Credit Card</button>
+	 
+	</div>
+	
+	<!-- Tab content -->
+	<div id="Bank Account" class="tabcontent">
+	  <h2>Bank Account</h2>
+	  <h3>FDM BANK</h3>
+	  <h4><span th:text="${account.bankAccNo}"></span></h4>
+	  <h3>Your Balance : $<span th:text="${account.balance}"></span></h3>
+	  <h2 style="text-align:right;">$<span th:text="${account.balance}"></span></h2>
+	  <p><a th:href="@{/transferpage/{id}(id=${accountId})}">Make a transfer</a></p>
+	  <p><a th:href="@{/depositwithdrawalpage/{id}(id=${accountId})}">Make a Deposit/Withdrawal</a></p>
+	</div>
+	
+	<div id="Credit Card" class="tabcontent">
+	  
+	  
+	  <!-- Place Username here~ -->
+	  <div class="greeting">
+	  Hello, <span th:text="${user.firstName}"></span> !
+	  </div>
+	  
+	  <div class="credit-statement" th:if="${noCreditCard}">
+	  		You have no credit card.
+	   </div>
+	  
+	  <div class="credit-card-header" th:unless="${noCreditCard}">
+	  Your Credit Card
+	  <span th:text="${creditLimit}"></span>
+	  </div>
+	  
+	  <div class="credit-header">
+	  Credit Card Application
+	  </div>
+	  
+	 <div class="reccomendation">
+	 Recommendation
+	 </div>
+	
+	
+	
+	
+	 
+	
+	<div th:each="creditCard : ${creditCardNotApplied}">
+	  
+	  <div class="rectangle-4">
+	</div>
+	 <div th:if="${creditCard.toString() == 'CARD1'}">
+	  <div class="smart-card">
+	  Smart Credit Card
+	  </div>
+	  <div class="smart-card-des">
+		Earn 6% cashback on everyday dining Earn 3% cashback on groceries, land transport, online travel, telco and electricity Earn up to 22.1% fuel savings at Caltex and 5% cashback for all other petrol brands!
+	  </div>
+		<div class="rectangle-2">
+		</div>
+		<div class="apply-now-smart"> <a style="text-decoration: none" th:href="@{/creditcard/apply/CARD1}">
+			Apply Now</a>
+		</div>
+		</div>
+	
+		
+	<div th:if="${creditCard.toString() == 'CARD2'}">
+		<div class="rectangle-5"></div>
+	  	<div class="rectangle-12"></div>
+	  	<div class="apply-now-titanium"><a style="text-decoration: none" th:href="@{/creditcard/apply/CARD2}">
+	  		Apply Now</a>
+	  	</div>
+	  	<div class="titanium-card">  Titanium Rewards Credit Card</div>
+	  <div class="titanium-card-des">
+		Earn 10x rewards per $1 spent on eligible online and retail purchases at Apple, Shopee, H&M and more Exchange for cash rebates, air miles, vouchers, products and experiences Get a bonus 2% cash rebate on electronics at Best Denki
+	  </div>
+	 </div>
+	  	
+	  
+	  <div th:if="${creditCard.toString() == 'CARD3'}">
+	  	<div class="rectangle-6"></div>
+	  	<div class="rectangle-22"></div>
+	  	<div class="apply-now-infinity"><a style="text-decoration: none" th:href="@{/creditcard/apply/CARD3}">
+	  		Apply Now</a>
+	  	</div>
+	  	<div class="infinity-card">  Infinite Credit Card</div>
+	  <div class="infinity-card-des">
+		Interest-free auto-instalments Ease of split payments across 3 or 6 months Earn 1% cash rebates when your monthly bill is S$1,000 or more.
+	  </div>
+	 </div>
+	</div>	
+	  	
+	</div>
+	
+	
+	
+	<div class="Rectangle-2">
+	</div>
+	<div class="logout">
+	Logout
+	</div>
+		
+	
+	
+	<script>
+	// Get the element with id="defaultOpen" and click on it
+	document.getElementById("defaultOpen").click();
+	</script>
+
+</head>
+  <body>
+    <!-- Add your website content here -->
+  </body>
+</html>

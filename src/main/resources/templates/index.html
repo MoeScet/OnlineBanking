@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+<meta charset="UTF-8">
+<title>Welcome</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  	
+<style>
+.tab {
+	display: inline-block;
+	margin-right: 10px;
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+	border-bottom: none;
+	cursor: pointer;
+}
+
+.tab.active {
+	border-color: #000;
+	border-bottom: none;
+}
+
+.form-container {
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+button {
+	padding: 10px 20px;
+	background-color: #000;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+}
+
+/* content format*/
+  	.content {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 44px;
+	}
+	
+/* heading format */
+	.heading {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 44px;
+	}
+	
+	
+
+</style>
+</head>
+<body>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+  
+	<!-- <div>
+		<h1 style="font-family: Arial;" align="center"> Welcome to our banking website project! </h1>
+		img src="/Users/adamhardy/Downloads/javagroupproj-master 3/src/main/resources/static/Photo.png" alt="FDM One Bank Logo" class="logo"
+		<div class="tab active" onclick="openTab(event, 'login-form')">Log In</div>
+		<div class="tab" onclick="openTab(event, 'register-form')">Register</div>
+	</div>
+	<div class="form-container" id="login-form">
+		<form method="post" action="login">
+			<p>Already a member? Log in here.</p>
+			<input type="text" name="username" placeholder="Username"> <input
+				type="password" name="password" placeholder="Password">
+			<button type="submit">Log In</button>
+		</form>
+	</div>
+	<div class="form-container" id="register-form" style="display: none">
+		<form method="get" action="register">
+			<p>
+				<button>Register Now</button>
+			</p>
+		</form>
+	</div>
+	<script>
+		function openTab(evt, tabName) {
+			var i, tabcontent, tablinks;
+			tabcontent = document.getElementsByClassName("form-container");
+			for (i = 0; i < tabcontent.length; i++) {
+				tabcontent[i].style.display = "none";
+			}
+			tablinks = document.getElementsByClassName("tab");
+			for (i = 0; i < tablinks.length; i++) {
+				tablinks[i].className = tablinks[i].className.replace(
+						" active", "");
+			}
+			document.getElementById(tabName).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+	</script>
+	<h3 style="color:Red;" th:if="${a}">FAILED LOGIN. Please enter correct Password for a valid account.</h3> -->
+<br>
+<div align="center" class="heading">Welcome to our banking website project!</div>
+
+<div class="container" style="padding-top:80px">
+	
+		<nav>
+		  <div class="nav nav-pills justify-content-center" id="nav-tab" role="tablist">
+		    <button class="nav-link active" id="nav-login-tab" data-bs-toggle="tab" data-bs-target="#nav-login" type="button" role="tab" aria-controls="nav-login" aria-selected="true">LOGIN</button>
+		    <button class="nav-link" id="nav-register-tab" data-bs-toggle="tab" data-bs-target="#nav-register" type="button" role="tab" aria-controls="nav-register" aria-selected="false">REGISTER</button>
+  		  </div>
+		</nav>
+		
+		<!-- LOGIN -->
+		<!-- LOGIN -->
+		<!-- LOGIN -->
+		<!-- login tab content -->
+		<div class="tab-content" id="nav-tabContent">
+		  <div class="tab-pane fade show active" id="nav-login" role="tabpanel" aria-labelledby="nav-login-tab" tabindex="0">
+		 	<br>
+			<div class="nav justify-content-center">
+				
+					<form method="post" action="login" class="content text-center" style="width:350px">
+						Already a member? Log in here.<br><br>
+						<input type="text" name="username" placeholder="Username" class="form-control"> <br>
+						
+						<input
+							type="password" id="password" name="password" placeholder="Password" class="form-control"> <br>
+						<!-- An element to toggle between password visibility -->
+						<input type="checkbox" onclick="togglePassword()" > Show Password <br><br>
+						<button type="submit" class="btn btn-outline-secondary col-12">Log In</button>
+						<br><br>
+						<div style="color:Red;flex: auto;" th:if="${a}">FAILED LOGIN. Please enter correct password for a valid account.</div>		
+	
+					</form>
+				
+			</div>	
+			 
+		</div>
+		
+		
+		<!-- REGISTER -->
+		<!-- REGISTER -->
+		<!-- REGISTER -->
+		  <!-- register tab content  -->
+		  <div class="tab-pane fade" id="nav-register" role="tabpanel" aria-labelledby="nav-register-tab" tabindex="0">
+		  	<br>
+		  	<div class="nav justify-content-center">
+		  		<form method="get" action="register" class="content text-center">
+		  			There are just a few, short steps to complete to register for online banking.<br><br>
+		  			<button class="btn btn-outline-secondary col-4">Register Now</button>
+				</form>  		
+		  	</div>	
+		</div>
+		
+		
+	</div>	
+</div>
+
+	<script>
+	function togglePassword() {
+	  var passwordInput = document.getElementById("password");
+	  if (passwordInput.type === "password") {
+	    passwordInput.type = "text";
+	  } else {
+	    passwordInput.type = "password";
+	  }
+	}
+	</script>
+
+</body>
+</html>

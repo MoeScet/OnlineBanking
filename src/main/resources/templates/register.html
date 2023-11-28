@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org>
+<head>
+<meta charset="UTF-8">
+
+<title>Register</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+</head>
+<body style="margin-left:400px;">
+
+	<style>
+	/* heading format */
+	.heading {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 50px;
+	line-height: 50px;
+	margin-left: 0px;
+	}
+  	
+  	.heading2 {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 30px;
+	align-items: center;
+	text-align: left;
+	color: #000000;
+	}
+  	
+  	/* content format*/
+  	.content {
+	font-family: 'Inter';
+	font-style: normal;
+	font-size: 20px;
+	line-height: 24px;
+	}
+
+	input {
+	  width: 30%;
+	  padding: 6px 10px;
+	  margin: 8px 0px;
+	  box-sizing: border-box;
+	  border-radius: 7.5px;
+	  border-color: #f0f0f0;
+	}
+	select {
+	  width: 60.35%;
+	  padding: 6px 10px;
+	  margin: 8px 0px;
+	  box-sizing: border-box;
+	  border-style: solid;
+	  border-radius: 7.5px;
+	  border-color: #808080;
+	}
+		.sign-button{
+		margin-right: 10px;
+		float: left;
+		background-color: #808080;
+		color: white;
+		font-size: 20px;
+		padding: 10px 20px;
+		border: none;
+		border-radius: 5px;
+		line-height: 25px;
+		cursor: pointer;
+	}
+
+		.error-message {
+			font-family: 'Inter';
+    		color: #ff4d4d;
+    		font-size: 16px;
+		}
+		
+		.username-taken{
+			font-family: 'Inter';
+    		color: #ff4d4d;
+    		font-size: 16px;
+		}
+		
+		.underage{
+			font-family: 'Inter';
+    		color: #ff4d4d;
+    		font-size: 16px;
+		}
+		
+	div.horizontalgap {
+	  float: left;
+	  overflow: hidden;
+	  height: 1px;
+	  width: 0px;
+	}
+	</style>
+	
+	<div align="left">
+	<br />
+	<h3 class="heading2">FDM BANK ONE</h3>
+	<h2 class="heading">Sign up for an account</h2><br>
+	</div>
+	
+
+	<div class="form-container">
+	<form class="content" method="post" action="register">
+		<input onkeydown="return /[a-z]/i.test(event.key)" type="text" name="firstName" placeholder="First Name" th:value ="*{firstName}" required>
+		<input onkeydown="return /[a-z]/i.test(event.key)" type="text" name="lastName" placeholder="Last Name" th:value ="*{lastName}" required><br>
+		<input type="text" name="username" placeholder="Username" th:value ="*{username}" required><br>
+		<input type="email" name="email" placeholder="Email Address" th:value ="*{email}" required><br>
+		<input type="text" name="mobile" pattern="[0-9]{8}" placeholder="Mobile Number" th:value ="*{mobile}" required title="Enter a valid 8 digit mobile number"><br>
+		<input type="text" name="address" placeholder="Address" th:value ="*{address}" required>
+		<input type="text" id="postalCode" name="postalCode" pattern="[0-9]{6}" placeholder="Postal Code (6 digits)" th:value ="*{postalCode}"required title="Enter 6-digit number"><br>
+		<input type="date" name="birthDate" placeholder="Date Of Birth" th:value ="*{dob}" required><br>
+		<select id="income" name="income" required>
+  			<option value="">-- Please select your annual income --</option>
+  				<th:block th:each="income : ${T(com.fdm.OnlineBanking.Enum.AnnualIncome).values()}">
+    				<option th:value="${income}" th:text="${income.displayName}"></option>
+  				</th:block>
+		</select>
+		<br>
+		<input type="password" id="password" name="password" placeholder="Password" required>
+		<input type="password" id="verifyPassword" name="checkPassword" placeholder="Confirm Password" required> <br><br>
+		<!-- An element to toggle between password visibility -->
+		<input type="checkbox" onclick="togglePassword()" > Show Password <br><br>
+		<button type="submit" class="sign-button" style="background-color: #4486D3;">Sign Up</button>
+		</form>
+		<form method="get" action="login">
+		<button type="submit" class="sign-button"> Back To Login </button>
+		</form>
+	
+	</div>
+	<br><br>
+	<div th:if="${identicalUsername}" class="username-taken">
+   		 <p style="display:inline;">Username is already taken. Please enter a different username.</p>
+   	 </div>
+
+	<div th:if="${underage}" class="underage">
+   		 <p style="display:inline;">Account registration is only valid for individuals aged over 18.</p>
+	</div>
+
+	<div th:if="${errorMessage}" class="error-message">
+   		 <p style="display:inline;">Please enter matching passwords.</p>
+	</div>
+	
+	<script>
+	function togglePassword() {
+	  var passwordInput = document.getElementById("password");
+	  var checkPassInput = document.getElementById("verifyPassword");
+	  if (passwordInput.type === "password" || checkPassInput.type === "verifyPassword") {
+	    passwordInput.type = "text";
+	    checkPassInput.type = "text";
+	  } else {
+	    passwordInput.type = "password";
+	    checkPassInput.type = "password";
+	  }
+	}
+	</script>
+
+</body>
+</html>

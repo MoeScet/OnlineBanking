@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th=http://www.thymeleaf.org>
+<head>
+<meta charset="UTF-8">
+<title>Credit Card Transaction History</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+<style>
+	/* heading format */
+	.heading {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 44px;
+	}
+  	
+  	.heading2 {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 24px;
+	align-items: center;
+	text-align: left;
+	color: #000000;
+	}
+  	
+  	/* content format*/
+  	.content {
+	font-family: 'Inter';
+	font-style: normal;
+	font-size: 20px;
+	line-height: 44px;
+	}
+	
+	/* dropdown format*/
+  	.dropdown {
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 40px;
+	}
+  	
+  	th {
+  	font-size: 18px;
+	}
+	
+	a {
+	font-family:'Inter';
+	font-size: 16px;
+	}
+	
+	</style>
+	
+	<script type="text/javascript">
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+</script>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+<div align = "left">
+
+<div th:if="${!filteredCCT.isEmpty()}">
+	<!-- logout button-->
+ 	<nav class="navbar bg-body-tertiary fixed-top">
+	  <form class="container-fluid justify-content-end">
+	  <a th:href="@{/LOGOUT}">
+	    <button class="btn btn-outline-info me-2" type="button">LOGOUT</button></a>
+	  </form>
+	</nav>
+	  
+	  
+	<div class="container" style="padding-top: 40px">
+  		<br>
+  		<h1>Hello, <span th:text="${firstName}"></span>!</h1>
+  		
+  		<br>
+
+	<div class="content" th:text="'Showing Transaction History Within ' + ${monthYear}"></div>
+	<br />
+	<div>
+		<font face="Inter">
+
+		<table class="table table-hover table-bordered" border="3" height="50%" width="50%"
+		bordercolor="black" align=center cellpadding ="5" >
+		
+		<thead bgcolor="#D0D0D0">
+		<tr align="center"> 
+		<th scope="col">Transaction Date</th>
+		<th scope="col">Transaction Type</th>
+		<th scope="col">Description</th>
+		<th scope="col">Amount</th>
+		</tr>
+		</thead>
+		
+		<tbody>
+		<tr th:each="log : ${filteredCCT}">
+		<td th:text="${log.transactionTime}" /></td>
+		<td th:text="${log.transactionType}" /></td>
+		<td th:text="${log.merchant}" /></td>
+		<td th:if="${log.transactionType} eq 'EXTERNAL MERCHANT'" th:text="${log.amount}" style="color:Red;"/></td>
+		<td th:if="${log.transactionType} eq 'CC Payment'" th:text="${log.amount}" style="color:MediumSeaGreen;"/></td>
+
+		</tr>
+		</tbody>
+		
+		</table>
+		</font>
+		
+		<br />
+		
+		<a th:href="@{/transaction/creditCard/{path}(path=${CCMap})}">Return To Transaction History</a>
+	</div>
+	
+	<br />
+
+	</div>
+	<div th:if="${filteredCCT.isEmpty()}">
+	<span th:text="'You have not made any transactions within ' + ${monthYear}"></span>
+	<br />
+	<a th:href="@{/transaction/creditCard{path}(path=${CCMap})}">Return To Transaction History</a>
+	</div>
+</div>
+</body>
+</html>

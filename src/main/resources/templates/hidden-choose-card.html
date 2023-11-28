@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hidden Page Choose Card</title>
+</head>
+<body>
+	
+	<h1>Input Credit Card Transactions</h1>
+	
+ 	<form method="post" action="hidden-choose-card" >
+		<label for="creditcard">Select a card: </label>
+			<select id="creditcard" name="creditcard">
+				<option th:each="creditcard : ${userCardsList}" th:value="${creditcard.CardName.getCreditCardName}" th:text="${creditcard.CardName.getCreditCardName}"></option>
+			</select>
+		<input type="submit" value="Select Credit Card"/>
+	</form>
+	
+	<br>
+	<a href="hidden">Click here to go back to main hidden page</a>
+
+</body>
+</html>

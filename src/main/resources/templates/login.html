@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+<body>
+	
+	<style>
+  		.form-button {
+		margin-left: 50px;
+		margin-right: 50px;
+		background-color: #0DF95C;
+		color: white;
+		font-size: 20px;
+		padding: 10px 20px;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+ 	 	
+ 	 	body {
+			background-color: #f0f0f0; /* set the background color to light gray */
+	}
+	
+	.login-button {
+		margin-left: 50px;
+		margin-right: 50px;
+		background-color: #0DF95C;
+		color: white;
+		font-size: 20px;
+		padding: 10px 20px;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+	
+	.header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: wrap;
+    margin-bottom: 10px;
+    text-align: center;
+    height: 20vh;
+  }
+  
+  .form-container {
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+  	height: 40vh;
+	}
+
+   .form-wrapper {
+    background-color: #14354F;
+    border: 1px solid #14354F;
+    border-radius: 10px;
+    padding: 20px;
+    width: 400px;
+    margin: auto;
+    display: flex;
+ 	justify-content: center;
+  	align-items: center;
+  }
+  .form-wrapper input[type="text"],
+  .form-wrapper input[type="password"],
+  .form-wrapper button {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-family: sans-serif;
+  }
+  .form-wrapper input[type="text"],
+  .form-wrapper input[type="password"] {
+    background-color: #fff;
+    color: #333;
+  }
+  .form-wrapper button {
+    background-color: #4486D3;
+    color: #fff;
+    cursor: pointer;
+  }
+  .form-wrapper button:hover {
+    background-color: #0F2C52;
+  }
+	</style>
+	
+	<div class="header-container" style="display: flex; justify-content: center; align-items: center; flex-direction: wrap;">
+	<h1 style="color: #ff00ff; margin-left:620px;">Login Page</h1>
+	<form method="get" action="register" style="display: inline-block; margin-left: 400px;">
+	<button type="submit" class="form-button" style="background-color: #0DF95C;">SIGN UP</button>
+	</form>
+	</div>
+	
+	<div class="form-container">
+	<div class="form-wrapper">
+ 	 <form method="post" action="login">
+    	<input type="text" name="username" placeholder="Username" required>
+   		 <input type="password" name="password" placeholder="Password" required style="margin-top: 20px; margin-bottom: 40px;">
+    	<button type="submit" style="margin-left: 10px">Login</button>
+  	</form>
+	</div>
+	</div>
+
+</body>
+</html>
